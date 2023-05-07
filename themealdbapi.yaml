@@ -1,0 +1,248 @@
+openapi: 3.0.3
+info:
+  title: Free meal API - OpenAPI 3.0
+  description: |-
+    Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.
+    We also offer a free JSON API for anyone wanting to use it, with additional features for subscribers.
+  version: 1.0.11
+externalDocs:
+  description: Find out more about TheMealDB
+  url: https://www.themealdb.com/
+servers:
+  - url: https://themealdb.com/api/json/v1/1
+tags:
+  - name: meal
+    description: Everything about meals
+paths:
+  /search.php:
+    get:
+      tags:
+        - meal
+      summary: Search meal by name
+      operationId: listMeals
+      parameters:
+        - name: s
+          in: query
+          description: meal name
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealArray'
+  /lookup.php:
+    get:
+      tags:
+        - meal
+      summary: Search meal by name
+      operationId: findMealsById
+      parameters:
+        - name: i
+          in: query
+          description: meal id
+          required: true
+          explode: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealArray'
+  /categories.php:
+    get:
+      tags:
+        - category
+      summary: List all meal categories
+      operationId: listCategories
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryArray'
+  /filter.php:
+    get:
+      tags:
+        - category
+      summary: Filter meal categories
+      operationId: filterByCategory
+      parameters:
+        - name: c
+          in: query
+          description: categoryName
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealMinimalArray'
+components:
+  schemas:
+    MealArray:
+      type: object
+      properties:
+        meals: 
+          type: array
+          items:
+            $ref: '#/components/schemas/Meal'
+    MealMinimalArray:
+      type: object
+      properties:
+        meals: 
+          type: array
+          items:
+            $ref: '#/components/schemas/MealMinimal'
+    CategoryArray:
+      type: object
+      properties:
+        categories: 
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    MealMinimal:
+      type: object
+      properties:
+        strMeal:
+          type: string
+        strMealThumb:
+          type: string
+        idMeal:
+          type: string
+    Meal:
+      type: object
+      properties:
+        idMeal:
+          type: string
+        strMeal:
+          type: string
+        strCategory:
+          type: string
+        strArea:
+          type: string
+        strInstructions:
+          type: string
+        strMealThumb:
+          type: string
+        strTags:
+          type: string
+        strYoutube:
+          type: string
+        strIngredient1:
+          type: string
+        strIngredient2:
+          type: string
+        strIngredient3:
+          type: string
+        strIngredient4:
+          type: string
+        strIngredient5:
+          type: string
+        strIngredient6:
+          type: string
+        strIngredient7:
+          type: string
+        strIngredient8:
+          type: string
+        strIngredient9:
+          type: string
+        strIngredient10:
+          type: string
+        strIngredient11:
+          type: string
+        strIngredient12:
+          type: string
+        strIngredient13:
+          type: string
+        strIngredient14:
+          type: string
+        strIngredient15:
+          type: string
+        strIngredient16:
+          type: string
+        strIngredient17:
+          type: string
+        strIngredient18:
+          type: string
+        strIngredient19:
+          type: string
+        strIngredient20:
+          type: string
+        strMeasure1:
+          type: string
+        strMeasure2:
+          type: string
+        strMeasure3:
+          type: string
+        strMeasure4:
+          type: string
+        strMeasure5:
+          type: string
+        strMeasure6:
+          type: string
+        strMeasure7:
+          type: string
+        strMeasure8:
+          type: string
+        strMeasure9:
+          type: string
+        strMeasure10:
+          type: string
+        strMeasure11:
+          type: string
+        strMeasure12:
+          type: string
+        strMeasure13:
+          type: string
+        strMeasure14:
+          type: string
+        strMeasure15:
+          type: string
+        strMeasure16:
+          type: string
+        strMeasure17:
+          type: string
+        strMeasure18:
+          type: string
+        strMeasure19:
+          type: string
+        strMeasure20:
+          type: string
+        strSource:
+          type: string
+        strImageSource:
+          type: string
+        strCreativeCommonsConfirmed:
+          type: string
+        dateModified:
+          type: string
+      xml:
+        name: meal
+    Category:
+      type: object
+      properties:
+        idCategory:
+          type: string
+          example: 1
+        strCategory:
+          type: string
+          example: Beef
+        strCategoryDescription:
+          type: string
+        strCategoryThumb:
+          type: string
+      xml:
+        name: category
