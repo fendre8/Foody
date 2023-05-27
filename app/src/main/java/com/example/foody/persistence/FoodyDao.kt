@@ -16,18 +16,18 @@ interface FoodyDao {
     @Query("SELECT * FROM Recipe")
     suspend fun getRecipes(): List<Recipe>
 
-    @Query("SELECT * FROM Recipe WHERE id = :id_")
+    @Query("SELECT * FROM Recipe WHERE apiId = :id_")
     suspend fun getRecipe(id_: Int): Recipe?
 
     @Insert
-    fun insertRecipe(recipe: Recipe)
+    suspend fun insertRecipe(recipe: Recipe)
 
     @Update
-    fun updateRecipe(recipe: Recipe)
+    suspend fun updateRecipe(recipe: Recipe)
 
     @Delete
-    fun deleteRecipe(recipe: Recipe)
+    suspend fun deleteRecipe(recipe: Recipe)
 
     @Query("DELETE FROM Recipe")
-    fun deleteAllRecipes()
+    suspend fun deleteAllRecipes()
 }

@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.foody.model.Recipe
 
-@Database(entities = [Recipe::class], version = 1, exportSchema = false)
+@Database(entities = [Recipe::class], version = 5, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun foodyDao(): FoodyDao
