@@ -2,17 +2,20 @@ package com.example.foody.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.foody.converters.IngredientsTypeConverter
 
 @Entity
+@TypeConverters(IngredientsTypeConverter::class)
 data class Recipe(
-    @PrimaryKey val id: Number,
-    val apiId: Number,
+    @PrimaryKey val id: Int?,
+    val apiId: Int,
     val mealName: String,
-    val category: String,
+    var category: String,
     val area: String,
-    val instructions: String,
+    var instructions: String,
     val mealThumb: String,
-    val tags: String,
-    val youtubeLink: String,
+    val tags: String?,
+    val youtubeLink: String?,
     val ingredients: List<Ingredient>
 )
